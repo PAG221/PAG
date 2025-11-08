@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Pape Abdoulaye Gaye</title>
+
+    <!-- Tailwind (CDN pour prototype rapide) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Bouton mode sombre -->
+    <button id="darkModeToggle" aria-label="Basculer le thème"
+            class="fixed bottom-6 right-6 z-50 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-colors">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white dark:bg-gray-800 shadow-md z-40">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Pape Gaye</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Accueil</a>
+                    <a href="#about" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">À propos</a>
+                    <a href="#skills" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Compétences</a>
+                    <a href="#education" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Formation</a>
+                    <a href="#projects" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Projets</a>
+                    <a href="#contact" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Contact</a>
+                </div>
+                <button id="mobileMenuButton" class="md:hidden text-gray-800 dark:text-gray-200" aria-label="Ouvrir menu mobile">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 px-6 py-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Accueil</a>
+                <a href="#about" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">À propos</a>
+                <a href="#skills" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Compétences</a>
+                <a href="#education" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Formation</a>
+                <a href="#projects" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Projets</a>
+                <a href="#contact" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Hero -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-700 dark:to-purple-800 text-white pt-20">
+        <div class="container mx-auto px-6 py-20 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Bonjour, je suis <span class="text-yellow-300">Pape Abdoulaye Gaye</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-8">Licencié en Informatique Appliquée à la Gestion des Entreprises</h2>
+                <p class="text-lg md:text-xl mb-10 opacity-90">Spécialisé dans le développement de solutions informatiques pour optimiser la gestion d'entreprise.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#projects" class="px-8 py-3 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">Voir mes projets</a>
+                    <a href="#contact" class="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition-colors">Me contacter</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flèche vers le bas -->
+        <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce" aria-hidden="true">
+            <i class="fas fa-chevron-down text-3xl text-white"></i>
+        </a>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">À propos de moi</h2>
+
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <img src="WhatsApp Image 2025-04-04 à 15.54.26_b06d947f.jpg"
+                             alt="Photo de profil"
+                             class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-indigo-500 shadow-xl">
+                        <div class="absolute -bottom-3 -right-3 bg-indigo-600 text-white p-3 rounded-full shadow-lg">
+                            <i class="fas fa-code text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 md:pl-16">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Qui suis-je ?</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Je suis un jeune diplômé en Informatique Appliquée à la Gestion des Entreprises de l'ISM, passionné par le développement de solutions informatiques innovantes pour optimiser les processus métiers. Mon parcours académique et mes projets personnels m'ont permis d'acquérir des compétences solides en développement web, gestion de bases de données et analyse des systèmes d'information.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
+                                <i class="fas fa-user-tie text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Nom</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Pape Abdoulaye Gaye</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">papeabdoulayegaye@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
+                                <i class="fas fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Téléphone</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+221 77 263 63 17</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Localisation</h4>
+                                <p class="text-gray-600 dark:text-gray-300">MBOUR, Sénégal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <a href="Green and White Modern Graphic Designer Resume.pdf" class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition-colors flex items-center">
+                            <i class="fas fa-download mr-2"></i> Télécharger CV
+                        </a>
+                        <a href="https://www.linkedin.com/in/pape-abdoulaye-gaye" target="_blank" rel="noopener" class="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 px-6 py-2 rounded-full hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors flex items-center">
+                            <i class="fab fa-linkedin-in mr-2"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Mes Compétences</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Compétences techniques -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center">
+                        <i class="fas fa-code mr-3 text-indigo-600 dark:text-indigo-400"></i> Compétences Techniques
+                    </h3>
+
+                    <div class="space-y-6">
+                        <!-- exemples de barres -->
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Développement Web</span>
+                                <span class="text-gray-600 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Bases de données</span>
+                                <span class="text-gray-600 dark:text-gray-400">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compétences pro -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center">
+                        <i class="fas fa-briefcase mr-3 text-indigo-600 dark:text-indigo-400"></i> Compétences Professionnelles
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Analyse des besoins</span>
+                                <span class="text-gray-600 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Travail d'équipe</span>
+                                <span class="text-gray-600 dark:text-gray-400">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technologies -->
+            <div class="mt-16">
+                <h3 class="text-xl font-semibold mb-8 text-center text-gray-800 dark:text-white">Technologies que j'utilise</h3>
+
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="tech-icon" data-tooltip="HTML5">
+                        <i class="fab fa-html5 text-5xl text-orange-500"></i>
+                    </div>
+                    <div class="tech-icon" data-tooltip="CSS3">
+                        <i class="fab fa-css3-alt text-5xl text-blue-500"></i>
+                    </div>
+                    <div class="tech-icon" data-tooltip="JavaScript">
+                        <i class="fab fa-js-square text-5xl text-yellow-400"></i>
+                    </div>
+                    <div class="tech-icon" data-tooltip="PHP">
+                        <i class="fab fa-php text-5xl text-purple-500"></i>
+                    </div>
+                    <div class="tech-icon" data-tooltip="MySQL">
+                        <i class="fas fa-database text-5xl text-blue-600"></i>
+                    </div>
+                    <div class="tech-icon" data-tooltip="Office">
+                        <i class="fas fa-file-excel text-5xl text-green-500"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formation -->
+    <section id="education" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Mon Parcours Académique</h2>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">2024 - Présent</h4>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Licence en Informatique Appliquée à la Gestion des Entreprises</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">Institut Supérieur de Management (ISM), MBOUR</p>
+                            <p class="text-gray-600 dark:text-gray-300">Spécialisation en développement d'applications de gestion et analyse des systèmes d'information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">2021</h4>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Baccalauréat Littéraire</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">Complexe Scolaire International Keur Madior</p>
+                            <p class="text-gray-600 dark:text-gray-300">Option Sciences de la Vie et de la Terre avec mention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Mes Projets</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projet 1 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="promo.jpg"
+                             alt="Projet Dashboard"
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="promo.jpg" class="text-white text-lg font-semibold border-2 border-white px-4 py-2 rounded-full hover:bg-white hover:text-indigo-600 transition-colors">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Visuel d'un Agence de Voyage et Tourisme</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Affiche complète avec les services fournis par l'entreprise et leurs contacts.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Adobe Illustrator</span>
+                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Canva</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1470&q=80"
+                             alt="Projet E-commerce"
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white text-lg font-semibold border-2 border-white px-4 py-2 rounded-full hover:bg-white hover:text-indigo-600 transition-colors">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Plateforme de gestion scolaire</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Solution pour la gestion des étudiants, des notes et des paiements.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Firebase</span>
+                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Material UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors">
+                    Voir plus de projets
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Contactez-moi</h2>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Discutons de votre projet</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                        Vous avez un projet en tête ou souhaitez discuter d'une opportunité de collaboration ? N'hésitez pas à me contacter en utilisant le formulaire ou directement par email ou téléphone. Je réponds généralement dans les 24 heures.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400 mt-1">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Email</h4>
+                                <a href="mailto:papeabdoulayegaye@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">papeabdoulayegaye@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400 mt-1">
+                                <i class="fas fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Téléphone</h4>
+                                <a href="tel:+221772636317" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">+221 77 263 63 17</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="mr-4 text-indigo-600 dark:text-indigo-400 mt-1">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Adresse</h4>
+                                <p class="text-gray-600 dark:text-gray-300">MBOUR, Sénégal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-semibold text-gray-800 dark:text-white mb-4">Suivez-moi</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/papeabdoulayegaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/pape-abdoulaye-gaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://twitter.com/GayePapy" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.snapchat.com/add/gayelord7" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                                <i class="fab fa-snapchat-ghost"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <form id="contactForm" class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nom complet</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sujet</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center">
+                            <span id="submitText">Envoyer le message</span>
+                            <i id="submitIcon" class="fas fa-paper-plane ml-2"></i>
+                            <div id="submitSpinner" class="hidden ml-2">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                        </button>
+
+                        <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-lg">
+                            Votre message a été envoyé avec succès !
+                        </div>
+
+                        <div id="formError" class="hidden mt-4 p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-lg">
+                            Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#home" class="text-2xl font-bold text-indigo-400">Pape A. Gaye</a>
+                    <p class="mt-2 text-gray-400">Licencié en Informatique Appliquée à la Gestion des Entreprises</p>
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <a href="#home" class="text-gray-400 hover:text-white transition-colors">Accueil</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">À propos</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Compétences</a>
+                    <a href="#education" class="text-gray-400 hover:text-white transition-colors">Formation</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <div class="mt-6 md:mt-0">
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/papeabdoulayegaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pape-abdoulaye-gaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/GayePapy" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2024 Pape Abdoulaye Gaye. Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Conditions d'utilisation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
