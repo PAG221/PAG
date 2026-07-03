@@ -1,490 +1,2059 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Pape Abdoulaye Gaye</title>
-
-    <!-- Tailwind (CDN pour prototype rapide) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="font-sans bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-    <!-- Bouton mode sombre -->
-    <button id="darkModeToggle" aria-label="Basculer le thème"
-            class="fixed bottom-6 right-6 z-50 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-colors">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white dark:bg-gray-800 shadow-md z-40">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#home" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Pape Gaye</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Accueil</a>
-                    <a href="#about" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">À propos</a>
-                    <a href="#skills" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Compétences</a>
-                    <a href="#education" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Formation</a>
-                    <a href="#projects" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Projets</a>
-                    <a href="#contact" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Contact</a>
-                </div>
-                <button id="mobileMenuButton" class="md:hidden text-gray-800 dark:text-gray-200" aria-label="Ouvrir menu mobile">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+    <meta
+      name="description"
+      content="Portfolio de Pape Abdoulaye Gaye — Développeur Web & Systèmes d'Information. Spécialisé dans les solutions modernes et la cybersécurité."
+    />
+    <meta
+      name="keywords"
+      content="développeur web, PHP, JavaScript, MySQL, systèmes d'information, cybersécurité, portfolio"
+    />
+    <meta name="author" content="Pape Abdoulaye Gaye" />
+    <title>Pape Abdoulaye Gaye | Développeur Web & SI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0a0f1a;
+        color: #e8eaf0;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+      ul {
+        list-style: none;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        font-family: inherit;
+      }
+      :root {
+        --color-primary: #4f8eff;
+        --color-primary-dark: #3a78ff;
+        --color-accent: #00d4ff;
+        --color-bg: #0a0f1a;
+        --color-bg-secondary: #0d1424;
+        --color-bg-card: #121a2e;
+        --color-text: #e8eaf0;
+        --color-text-secondary: rgba(232, 234, 240, 0.7);
+        --color-text-tertiary: rgba(232, 234, 240, 0.4);
+        --color-border: rgba(79, 142, 255, 0.15);
+        --color-glass: rgba(255, 255, 255, 0.03);
+        --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+        --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.4);
+        --radius: 16px;
+        --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+      }
+      h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+      h4 {
+        font-size: 1.1rem;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .section {
+        padding: 6rem 0;
+        position: relative;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+      }
+      .section-tag::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: var(--color-primary);
+      }
+      .section-title {
+        color: var(--color-text);
+        margin-bottom: 1rem;
+      }
+      .section-title em {
+        color: var(--color-primary);
+        font-style: italic;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      .reveal-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 1.5rem 0;
+        transition: var(--transition);
+      }
+      .navbar.scrolled {
+        background: rgba(10, 15, 26, 0.85);
+        backdrop-filter: blur(20px);
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .nav-logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--color-text);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-logo .accent {
+        color: var(--color-primary);
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-link {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.6rem 1.2rem;
+        border-radius: 100px;
+        transition: var(--transition);
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--color-text);
+        background: var(--color-glass);
+      }
+      .nav-cta {
+        background: var(--color-primary);
+        color: #fff;
+        padding: 0.6rem 1.5rem;
+        border-radius: 100px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        margin-left: 0.5rem;
+        box-shadow: 0 0 20px rgba(79, 142, 255, 0.3);
+      }
+      .nav-cta:hover {
+        background: var(--color-primary-dark);
+        box-shadow: 0 0 30px rgba(79, 142, 255, 0.5);
+        transform: translateY(-2px);
+      }
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        padding: 6px;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--color-text);
+        border-radius: 2px;
+        transition: var(--transition);
+      }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background: var(--color-bg);
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at top right,
+          rgba(79, 142, 255, 0.08),
+          transparent 50%
+        );
+      }
+      .hero-dots {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(79, 142, 255, 0.12) 1px,
+          transparent 1px
+        );
+        background-size: 35px 35px;
+        mask-image: radial-gradient(
+          ellipse 70% 70% at 50% 50%,
+          black 30%,
+          transparent 80%
+        );
+      }
+      .hero-container {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+      .hero-eyebrow .dot {
+        width: 10px;
+        height: 10px;
+        background: #22c55e;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #22c55e;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .hero-name {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+      }
+      .hero-name .first {
+        color: var(--color-text);
+      }
+      .hero-name .last {
+        color: var(--color-primary);
+        font-style: italic;
+      }
+      .hero-title {
+        font-size: 1.1rem;
+        color: var(--color-accent);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        padding: 0.5rem 1rem;
+        background: rgba(0, 212, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 100px;
+        display: inline-block;
+        width: fit-content;
+      }
+      .hero-description {
+        font-size: 1.05rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        max-width: 500px;
+      }
+      .hero-description strong {
+        color: var(--color-text);
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.8rem;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: var(--color-primary);
+        color: #fff;
+        box-shadow: 0 0 25px rgba(79, 142, 255, 0.3);
+      }
+      .btn-primary:hover {
+        background: var(--color-primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 0 35px rgba(79, 142, 255, 0.5);
+      }
+      .btn-outline {
+        background: var(--color-glass);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+        backdrop-filter: blur(10px);
+      }
+      .btn-outline:hover {
+        border-color: var(--color-primary);
+        background: rgba(79, 142, 255, 0.08);
+      }
+      .hero-social {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .hero-social span {
+        font-size: 0.8rem;
+        color: var(--color-text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-secondary);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+      .social-icon:hover {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+      .hero-image {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .hero-image-wrapper {
+        width: 320px;
+        height: 380px;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          var(--color-bg-card),
+          var(--color-bg-secondary)
+        );
+        border: 1px solid var(--color-border);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+      }
+      .hero-image-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 70% 30%,
+          rgba(79, 142, 255, 0.15),
+          transparent 60%
+        );
+      }
+      .hero-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero-badge {
+        position: absolute;
+        background: rgba(13, 20, 36, 0.9);
+        border: 1px solid var(--color-border);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 0.6rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-text);
+        font-size: 0.85rem;
+        font-weight: 500;
+        box-shadow: var(--shadow-md);
+        animation: float 6s ease-in-out infinite;
+      }
+      .hero-badge i {
+        color: var(--color-primary);
+      }
+      .hero-badge.top-right {
+        top: 20px;
+        right: -40px;
+      }
+      .hero-badge.bottom-left {
+        bottom: 40px;
+        left: -50px;
+        animation-delay: 2s;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .about {
+        background: var(--color-bg-secondary);
+        position: relative;
+      }
+      .about::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-primary),
+          var(--color-accent),
+          transparent
+        );
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .about-text h3 {
+        margin-bottom: 1rem;
+      }
+      .about-text p {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .about-text p strong {
+        color: var(--color-text);
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .stat-card {
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: var(--transition);
+      }
+      .stat-card:hover {
+        border-color: var(--color-primary);
+        background: rgba(79, 142, 255, 0.05);
+      }
+      .stat-number {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--color-primary);
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--color-text-tertiary);
+        margin-top: 0.5rem;
+      }
+      .skills {
+        background: var(--color-bg);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+      .skill-category {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 2rem;
+        transition: var(--transition);
+      }
+      .skill-category:hover {
+        border-color: rgba(79, 142, 255, 0.3);
+        box-shadow: 0 0 30px rgba(79, 142, 255, 0.08);
+      }
+      .skill-category-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .skill-category-header i {
+        width: 40px;
+        height: 40px;
+        background: rgba(79, 142, 255, 0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+      }
+      .skill-category-header h3 {
+        font-size: 1.2rem;
+      }
+      .skill-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .skill-item i {
+        color: var(--color-primary);
+        width: 20px;
+      }
+      .skill-item span {
+        color: var(--color-text-secondary);
+      }
+      .projects {
+        background: var(--color-bg-secondary);
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .project-card {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .project-card:hover {
+        border-color: var(--color-primary);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      }
+      .project-image {
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #1a2a4f, #0d1a3a);
+      }
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        cursor: pointer;
+      }
+      .project-card:hover .project-image img {
+        transform: scale(1.05);
+      }
+      .project-content {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .project-content h3 {
+        margin-bottom: 0.75rem;
+      }
+      .project-description {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        flex: 1;
+      }
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .project-tech span {
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        color: var(--color-primary);
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+      }
+      .project-links {
+        display: flex;
+        gap: 1rem;
+      }
+      .project-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-primary);
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+      .project-links a:hover {
+        color: var(--color-accent);
+      }
+      .project-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 15, 26, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: var(--transition);
+      }
+      .project-card:hover .project-overlay {
+        opacity: 1;
+      }
+      .project-overlay a {
+        width: 45px;
+        height: 45px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        margin: 0 0.5rem;
+        transition: var(--transition);
+      }
+      .project-overlay a:hover {
+        transform: scale(1.1);
+      }
+      .project-gallery {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+      .gallery-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .gallery-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        cursor: pointer;
+      }
+      .gallery-image.active {
+        opacity: 1;
+      }
+      .gallery-nav {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 15px;
+        z-index: 10;
+      }
+      .gallery-btn {
+        background: rgba(13, 20, 36, 0.8);
+        border: 1px solid var(--color-border);
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .gallery-btn:hover {
+        background: var(--color-primary);
+        color: #fff;
+      }
+      .gallery-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+      }
+      .gallery-dots .dot {
+        width: 10px;
+        height: 10px;
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .gallery-dots .dot.active,
+      .gallery-dots .dot:hover {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 15, 26, 0.95);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+      }
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: var(--color-primary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .experience {
+        background: var(--color-bg);
+      }
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 30px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          var(--color-primary),
+          var(--color-accent)
+        );
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        padding-left: 80px;
+      }
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: 20px;
+        top: 5px;
+        width: 24px;
+        height: 24px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        border: 3px solid var(--color-bg);
+        box-shadow: 0 0 0 3px rgba(79, 142, 255, 0.3);
+      }
+      .timeline-content {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 2rem;
+        transition: var(--transition);
+      }
+      .timeline-content:hover {
+        border-color: var(--color-primary);
+        transform: translateX(10px);
+      }
+      .timeline-badge {
+        display: inline-block;
+        background: rgba(79, 142, 255, 0.15);
+        color: var(--color-primary);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.3rem 0.85rem;
+        border-radius: 100px;
+        margin-bottom: 1rem;
+      }
+      .timeline-content h3 {
+        margin-bottom: 1rem;
+      }
+      .timeline-content p {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+      .timeline-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .timeline-tags span {
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-tertiary);
+        font-size: 0.75rem;
+        padding: 0.25rem 0.7rem;
+        border-radius: 100px;
+      }
+      .contact {
+        background: var(--color-bg-secondary);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      .contact-info h3 {
+        margin-bottom: 1rem;
+      }
+      .contact-info > p {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        transition: var(--transition);
+      }
+      .contact-item:hover {
+        border-color: var(--color-primary);
+        background: rgba(79, 142, 255, 0.05);
+      }
+      .contact-item i {
+        width: 40px;
+        height: 40px;
+        background: rgba(79, 142, 255, 0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+      }
+      .contact-item .label {
+        font-size: 0.75rem;
+        color: var(--color-text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .contact-item .value {
+        font-size: 0.95rem;
+        color: var(--color-text);
+      }
+      .contact-form-wrapper {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        margin-bottom: 0.5rem;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.9rem 1.1rem;
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        color: var(--color-text);
+        font-size: 0.95rem;
+        transition: var(--transition);
+        font-family: inherit;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        background: rgba(79, 142, 255, 0.05);
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: var(--color-text-tertiary);
+      }
+      .footer {
+        background: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        padding: 4rem 0 2rem;
+      }
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .footer-logo {
+        width: 40px;
+        height: 40px;
+        background: var(--color-primary);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: italic;
+        color: #fff;
+      }
+      .footer-brand-name {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--color-text);
+      }
+      .footer-description {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        max-width: 400px;
+      }
+      .footer-column h4 {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--color-text);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1.5rem;
+      }
+      .footer-column ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .footer-column a {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+      .footer-column a:hover {
+        color: var(--color-primary);
+        padding-left: 5px;
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--color-border);
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-bottom p {
+        color: var(--color-text-tertiary);
+        font-size: 0.85rem;
+      }
+      .footer-bottom a {
+        color: var(--color-primary);
+      }
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 45px;
+        height: 45px;
+        background: var(--color-primary);
+        color: #fff;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: var(--transition);
+        z-index: 900;
+        box-shadow: 0 0 20px rgba(79, 142, 255, 0.4);
+      }
+      .back-to-top.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 30px rgba(79, 142, 255, 0.6);
+      }
+      @media (max-width: 1024px) {
+        .hero-container {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 3rem;
+        }
+        .about-grid,
+        .contact-grid,
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+        .hero-image-wrapper {
+          width: 280px;
+          height: 340px;
+        }
+        .timeline {
+          padding-left: 60px;
+        }
+        .timeline::before {
+          left: 20px;
+        }
+        .timeline-item {
+          padding-left: 60px;
+        }
+        .timeline-dot {
+          left: 12px;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-menu {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 260px;
+          height: 100vh;
+          background: rgba(10, 15, 26, 0.95);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 2rem;
+          transition: right 0.4s ease;
+          border-left: 1px solid var(--color-border);
+        }
+        .nav-menu.open {
+          right: 0;
+        }
+        .nav-link {
+          font-size: 1.1rem;
+          padding: 0.8rem 1.2rem;
+          width: 100%;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-toggle.active span:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        .nav-toggle.active span:nth-child(2) {
+          opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        .hero-social {
+          justify-content: center;
+        }
+        .section {
+          padding: 4rem 0;
+        }
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 1.25rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+        }
+        .btn {
+          justify-content: center;
+        }
+        .contact-form-wrapper {
+          padding: 1.5rem;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a href="#home" class="nav-logo">P<span class="accent">A</span></a>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link active">Accueil</a></li>
+          <li><a href="#about" class="nav-link">À propos</a></li>
+          <li><a href="#skills" class="nav-link">Compétences</a></li>
+          <li><a href="#projects" class="nav-link">Projets</a></li>
+          <li><a href="#experience" class="nav-link">Expérience</a></li>
+          <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle">
+          <span></span><span></span><span></span>
         </div>
-
-        <!-- Menu mobile -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 px-6 py-4 shadow-lg">
-            <div class="flex flex-col space-y-4">
-                <a href="#home" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Accueil</a>
-                <a href="#about" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">À propos</a>
-                <a href="#skills" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Compétences</a>
-                <a href="#education" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Formation</a>
-                <a href="#projects" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Projets</a>
-                <a href="#contact" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 transition-colors">Contact</a>
-            </div>
-        </div>
+      </div>
     </nav>
 
-    <!-- Section Hero -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-700 dark:to-purple-800 text-white pt-20">
-        <div class="container mx-auto px-6 py-20 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">Bonjour, je suis <span class="text-yellow-300">Pape Abdoulaye Gaye</span></h1>
-                <h2 class="text-2xl md:text-3xl font-semibold mb-8">Licencié en Informatique Appliquée à la Gestion des Entreprises</h2>
-                <p class="text-lg md:text-xl mb-10 opacity-90">Spécialisé dans le développement de solutions informatiques pour optimiser la gestion d'entreprise.</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#projects" class="px-8 py-3 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">Voir mes projets</a>
-                    <a href="#contact" class="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-indigo-600 transition-colors">Me contacter</a>
-                </div>
-            </div>
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-dots"></div>
+      <div class="hero-container">
+        <div class="hero-content reveal">
+          <div class="hero-eyebrow">
+            <span class="dot"></span><span>Disponible pour opportunités</span>
+          </div>
+          <h1 class="hero-name">
+            Pape <span class="last">Abdoulaye Gaye</span>
+          </h1>
+          <div class="hero-title">Développeur Web & Systèmes d'Information</div>
+          <p class="hero-description">
+            Titulaire d'une <strong>Licence IAGE</strong>, passionné par le
+            développement web, les systèmes d'information et la cybersécurité.
+            Je conçois des solutions web modernes, performantes et adaptées aux
+            besoins des utilisateurs.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary"
+              ><i class="fas fa-code"></i> Voir mes projets</a
+            >
+            <a href="Cv-pag.pdf" class="btn btn-outline" download
+              ><i class="fas fa-download"></i> Télécharger mon CV</a
+            >
+            <a href="#contact" class="btn btn-outline"
+              ><i class="fas fa-paper-plane"></i> Me contacter</a
+            >
+          </div>
+          <div class="hero-social">
+            <span>Suivez-moi</span>
+            <a
+              href="https://linkedin.com/in/papeabdoulayegaye"
+              target="_blank"
+              class="social-icon"
+              title="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://github.com/papeabdoulayegaye"
+              target="_blank"
+              class="social-icon"
+              title="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://wa.me/221772636317"
+              target="_blank"
+              class="social-icon"
+              title="WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+          </div>
         </div>
-
-        <!-- Flèche vers le bas -->
-        <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce" aria-hidden="true">
-            <i class="fas fa-chevron-down text-3xl text-white"></i>
-        </a>
+        <div class="hero-image reveal">
+          <div class="hero-image-wrapper">
+            <img src="pag.jpeg" alt="Pape Abdoulaye Gaye" />
+          </div>
+          <div class="hero-badge top-right">
+            <i class="fas fa-code"></i><span>Développeur Web</span>
+          </div>
+          <div class="hero-badge bottom-left">
+            <i class="fas fa-shield-alt"></i><span>Cybersécurité</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Section À propos -->
-    <section id="about" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">À propos de moi</h2>
-
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
-                    <div class="relative">
-                        <img src="WhatsApp Image 2025-04-04 à 15.54.26_b06d947f.jpg"
-                             alt="Photo de profil"
-                             class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-indigo-500 shadow-xl">
-                        <div class="absolute -bottom-3 -right-3 bg-indigo-600 text-white p-3 rounded-full shadow-lg">
-                            <i class="fas fa-code text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-2/3 md:pl-16">
-                    <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Qui suis-je ?</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        Je suis un jeune diplômé en Informatique Appliquée à la Gestion des Entreprises de l'ISM, passionné par le développement de solutions informatiques innovantes pour optimiser les processus métiers. Mon parcours académique et mes projets personnels m'ont permis d'acquérir des compétences solides en développement web, gestion de bases de données et analyse des systèmes d'information.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
-                                <i class="fas fa-user-tie text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Nom</h4>
-                                <p class="text-gray-600 dark:text-gray-300">Pape Abdoulaye Gaye</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
-                                <i class="fas fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Email</h4>
-                                <p class="text-gray-600 dark:text-gray-300">papeabdoulayegaye@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
-                                <i class="fas fa-phone text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Téléphone</h4>
-                                <p class="text-gray-600 dark:text-gray-300">+221 77 263 63 17</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Localisation</h4>
-                                <p class="text-gray-600 dark:text-gray-300">MBOUR, Sénégal</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex space-x-4">
-                        <a href="Green and White Modern Graphic Designer Resume.pdf" class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition-colors flex items-center">
-                            <i class="fas fa-download mr-2"></i> Télécharger CV
-                        </a>
-                        <a href="https://www.linkedin.com/in/pape-abdoulaye-gaye" target="_blank" rel="noopener" class="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 px-6 py-2 rounded-full hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors flex items-center">
-                            <i class="fab fa-linkedin-in mr-2"></i> LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">
+            <i class="fas fa-user"></i> Présentation
+          </div>
+          <h2 class="section-title">À propos de <em>moi</em></h2>
         </div>
+        <div class="about-grid">
+          <div class="about-text reveal-left">
+            <h3>Développeur passionné et expert en systèmes d'information</h3>
+            <p>
+              Je suis <strong>Pape Abdoulaye Gaye</strong>, développeur web et
+              spécialiste en systèmes d'information. Mon parcours académique en
+              Licence IAGE m'a permis d'acquérir des compétences solides dans le
+              développement web et l'analyse de systèmes informatiques.
+            </p>
+            <p>
+              Passionné par la création d'expériences numériques
+              exceptionnelles, j'ai également développé un intérêt particulier
+              pour la <strong>cybersécurité</strong>, un domaine essentiel dans
+              notre société connectée.
+            </p>
+            <div class="about-stats">
+              <div class="stat-card">
+                <div class="stat-number">2026</div>
+                <div class="stat-label">Diplômé IAGE</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Projets réalisés</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Technologies</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-image reveal-right">
+            <div class="hero-image-wrapper">
+              <img src="pag.jpeg" alt="Pape Abdoulaye Gaye" />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Section Compétences -->
-    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Mes Compétences</h2>
+    <section class="skills section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag"><i class="fas fa-code"></i> Expertise</div>
+          <h2 class="section-title">Mes <em>compétences</em></h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category reveal">
+            <div class="skill-category-header">
+              <i class="fas fa-laptop-code"></i>
+              <h3>Développement Web</h3>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fab fa-html5"></i><span>HTML5</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-css3-alt"></i><span>CSS3</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-js-square"></i><span>JavaScript</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-php"></i><span>PHP</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-java"></i><span>Java</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-category reveal">
+            <div class="skill-category-header">
+              <i class="fas fa-database"></i>
+              <h3>Base de données</h3>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fas fa-database"></i><span>MySQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-category reveal">
+            <div class="skill-category-header">
+              <i class="fas fa-tools"></i>
+              <h3>Outils</h3>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fab fa-git-alt"></i><span>Git</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-palette"></i><span>Photoshop</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-palette"></i><span>Canva</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-file-alt"></i><span>Microsoft Office</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-category reveal">
+            <div class="skill-category-header">
+              <i class="fas fa-network-wired"></i>
+              <h3>Réseaux & Systèmes</h3>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fas fa-server"></i
+                ><span>Administration réseau (notions)</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-sitemap"></i
+                ><span>Systèmes d'information</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-shield-alt"></i
+                ><span>Sécurité informatique (bases)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Compétences techniques -->
+    <section class="projects section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">
+            <i class="fas fa-folder-open"></i> Réalisations
+          </div>
+          <h2 class="section-title">Mes <em>projets</em></h2>
+        </div>
+        <div class="projects-grid">
+          <!-- Projet 1 - Black Beauty Nails -->
+          <div class="project-card reveal">
+            <div class="project-image">
+              <img
+                src="bbn.png"
+                alt="Black Beauty Nails"
+                onclick="openLightbox('bbn.png')"
+              />
+              <div class="project-overlay">
+                <a
+                  href="https://black-beauty-nails.com"
+                  target="_blank"
+                  title="Voir la démo"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+                <a
+                  href="https://github.com/papeabdoulaye/bbn"
+                  target="_blank"
+                  title="Voir sur GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Black Beauty Nails</h3>
+              <p class="project-description">
+                Site web responsive pour un salon de beauté avec système de
+                réservation en ligne, gestion des prestations et interface
+                administrateur.
+              </p>
+              <div class="project-tech">
+                <span>PHP</span><span>MySQL</span><span>JavaScript</span
+                ><span>HTML/CSS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://black-beauty-nails.com" target="_blank"
+                  ><i class="fas fa-external-link-alt"></i> Démo</a
+                >
+                <a href="https://github.com/papeabdoulaye/bbn" target="_blank"
+                  ><i class="fab fa-github"></i> Code</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Projet 2 - GSA Immo -->
+          <div class="project-card reveal">
+            <div class="project-gallery" id="gallery-2">
+              <div class="gallery-container">
+                <img
+                  src="gsa1.png"
+                  alt="GSA Immo 1"
+                  class="gallery-image active"
+                  onclick="openLightbox('gsa1.png')"
+                />
+                <img
+                  src="gsa2.png"
+                  alt="GSA Immo 2"
+                  class="gallery-image"
+                  onclick="openLightbox('gsa2.png')"
+                />
+                <img
+                  src="gsa3.png"
+                  alt="GSA Immo 3"
+                  class="gallery-image"
+                  onclick="openLightbox('gsa3.png')"
+                />
+                <img
+                  src="gsa4.png"
+                  alt="GSA Immo 4"
+                  class="gallery-image"
+                  onclick="openLightbox('gsa4.png')"
+                />
+              </div>
+              <div class="gallery-nav">
+                <button class="gallery-btn prev" onclick="moveSlide(-1, 2)">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-btn next" onclick="moveSlide(1, 2)">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div class="gallery-dots">
+                <span class="dot active" onclick="currentSlide(1, 2)"></span>
+                <span class="dot" onclick="currentSlide(2, 2)"></span>
+                <span class="dot" onclick="currentSlide(3, 2)"></span>
+                <span class="dot" onclick="currentSlide(4, 2)"></span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>GSA Immo (En cours)</h3>
+              <p class="project-description">
+                Solution complète de gestion de biens immobiliers avec suivi des
+                ventes, gestion des clients et statistiques avancées.
+              </p>
+              <div class="project-tech">
+                <span>PHP</span><span>MySQL</span><span>JavaScript</span
+                ><span>HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projet 3 - RetrouveSN -->
+          <div class="project-card reveal">
+            <div class="project-gallery" id="gallery-3">
+              <div class="gallery-container">
+                <img
+                  src="rt1.png"
+                  alt="RetrouveSN 1"
+                  class="gallery-image active"
+                  onclick="openLightbox('rt1.png')"
+                />
+                <img
+                  src="rt2.png"
+                  alt="RetrouveSN 2"
+                  class="gallery-image"
+                  onclick="openLightbox('rt2.png')"
+                />
+                <img
+                  src="rt3.png"
+                  alt="RetrouveSN 3"
+                  class="gallery-image"
+                  onclick="openLightbox('rt3.png')"
+                />
+                <img
+                  src="rt4.png"
+                  alt="RetrouveSN 4"
+                  class="gallery-image"
+                  onclick="openLightbox('rt4.png')"
+                />
+                <img
+                  src="rt5.png"
+                  alt="RetrouveSN 5"
+                  class="gallery-image"
+                  onclick="openLightbox('rt5.png')"
+                />
+                <img
+                  src="rt6.png"
+                  alt="RetrouveSN 6"
+                  class="gallery-image"
+                  onclick="openLightbox('rt6.png')"
+                />
+              </div>
+              <div class="gallery-nav">
+                <button class="gallery-btn prev" onclick="moveSlide(-1, 3)">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-btn next" onclick="moveSlide(1, 3)">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div class="gallery-dots">
+                <span class="dot active" onclick="currentSlide(1, 3)"></span>
+                <span class="dot" onclick="currentSlide(2, 3)"></span>
+                <span class="dot" onclick="currentSlide(3, 3)"></span>
+                <span class="dot" onclick="currentSlide(4, 3)"></span>
+                <span class="dot" onclick="currentSlide(5, 3)"></span>
+                <span class="dot" onclick="currentSlide(6, 3)"></span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>RetrouveSN (Projet de Soutenance)</h3>
+              <p class="project-description">
+                Plateforme de mise en relation pour retrouver des objets perdus,
+                avec gestion des annonces, notifications et messagerie intégrée.
+              </p>
+              <div class="project-tech">
+                <span>PHP</span><span>MySQL</span><span>JavaScript</span
+                ><span>HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projet 4 - Design Graphique -->
+          <div class="project-card reveal">
+            <div class="project-gallery" id="gallery-4">
+              <div class="gallery-container">
+                <img
+                  src="logo-gsa.jpeg"
+                  alt="Logo GSA"
+                  class="gallery-image active"
+                  onclick="openLightbox('logo-gsa.jpeg')"
+                />
+                <img
+                  src="logo-rt.png"
+                  alt="Logo RetrouveSN"
+                  class="gallery-image"
+                  onclick="openLightbox('logo-rt.png')"
+                />
+                <img
+                  src="logo-agro.jpeg"
+                  alt="Logo Agro"
+                  class="gallery-image"
+                  onclick="openLightbox('logo-agro.jpeg')"
+                />
+                <img
+                  src="logo-alba.jpeg"
+                  alt="Logo Alba"
+                  class="gallery-image"
+                  onclick="openLightbox('logo-alba.jpeg')"
+                />
+                <img
+                  src="affiche1.jpeg"
+                  alt="Design 5"
+                  class="gallery-image"
+                  onclick="openLightbox('affiche1.jpeg')"
+                />
+                <img
+                  src="affiche2.jpeg"
+                  alt="Design 6"
+                  class="gallery-image"
+                  onclick="openLightbox('affiche2.jpeg')"
+                />
+                <img
+                  src="affiche3.jpeg"
+                  alt="Design 7"
+                  class="gallery-image"
+                  onclick="openLightbox('affiche3.jpeg')"
+                />
+                <img
+                  src="affiche4.jpeg"
+                  alt="Design 8"
+                  class="gallery-image"
+                  onclick="openLightbox('affiche4.jpeg')"
+                />
+              </div>
+              <div class="gallery-nav">
+                <button class="gallery-btn prev" onclick="moveSlide(-1, 4)">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-btn next" onclick="moveSlide(1, 4)">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div class="gallery-dots">
+                <span class="dot active" onclick="currentSlide(1, 4)"></span>
+                <span class="dot" onclick="currentSlide(2, 4)"></span>
+                <span class="dot" onclick="currentSlide(3, 4)"></span>
+                <span class="dot" onclick="currentSlide(4, 4)"></span>
+                <span class="dot" onclick="currentSlide(5, 4)"></span>
+                <span class="dot" onclick="currentSlide(6, 4)"></span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Design Graphique</h3>
+              <p class="project-description">
+                Création de logos, affiches, supports de communication et
+                identités visuelles pour divers clients.
+              </p>
+              <div class="project-tech">
+                <span>Photoshop</span><span>Canva</span><span>Logo Design</span
+                ><span>Branding</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience section" id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">
+            <i class="fas fa-briefcase"></i> Parcours
+          </div>
+          <h2 class="section-title">Mon <em>expérience</em></h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-badge">Développeur Web Freelance</span>
+              <h3>2024 — Présent</h3>
+              <p>
+                Conception et développement de sites web responsives avec HTML,
+                CSS, JavaScript et PHP. Création d'applications web dynamiques
+                et intégration de bases de données MySQL.
+              </p>
+              <div class="timeline-tags">
+                <span>HTML5</span><span>CSS3</span><span>JavaScript</span
+                ><span>PHP</span><span>MySQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-badge">Designer Graphique</span>
+              <h3>2022 — 2024</h3>
+              <p>
+                Création de logos, affiches et supports de communication
+                visuelle. Utilisation d'outils professionnels comme Photoshop et
+                Canva.
+              </p>
+              <div class="timeline-tags">
+                <span>Photoshop</span><span>Canva</span><span>Logo Design</span
+                ><span>Visual Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag"><i class="fas fa-envelope"></i> Contact</div>
+          <h2 class="section-title">Travaillons <em>ensemble</em></h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal-left">
+            <h3>Contactez-moi pour vos projets</h3>
+            <p>
+              Je suis disponible pour des opportunités de stage, d'emploi ou de
+              collaboration sur des projets innovants. N'hésitez pas à me
+              contacter !
+            </p>
+            <div class="contact-details">
+              <a href="mailto:papeabdoulaye@email.com" class="contact-item"
+                ><i class="fas fa-envelope"></i>
                 <div>
-                    <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center">
-                        <i class="fas fa-code mr-3 text-indigo-600 dark:text-indigo-400"></i> Compétences Techniques
-                    </h3>
-
-                    <div class="space-y-6">
-                        <!-- exemples de barres -->
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700 dark:text-gray-300">Développement Web</span>
-                                <span class="text-gray-600 dark:text-gray-400">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700 dark:text-gray-300">Bases de données</span>
-                                <span class="text-gray-600 dark:text-gray-400">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Compétences pro -->
+                  <div class="label">Email</div>
+                  <div class="value">papeabdoulayegaye@gmail.com</div>
+                </div></a
+              >
+              <a href="tel:+221700000000" class="contact-item"
+                ><i class="fas fa-phone"></i>
                 <div>
-                    <h3 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center">
-                        <i class="fas fa-briefcase mr-3 text-indigo-600 dark:text-indigo-400"></i> Compétences Professionnelles
-                    </h3>
-
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700 dark:text-gray-300">Analyse des besoins</span>
-                                <span class="text-gray-600 dark:text-gray-400">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-700 dark:text-gray-300">Travail d'équipe</span>
-                                <span class="text-gray-600 dark:text-gray-400">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <div class="label">Téléphone</div>
+                  <div class="value">+221 77 263 63 17</div>
+                </div></a
+              >
+              <a
+                href="https://linkedin.com/in/papeabdoulayegaye"
+                target="_blank"
+                class="contact-item"
+                ><i class="fab fa-linkedin-in"></i>
+                <div>
+                  <div class="label">LinkedIn</div>
+                  <div class="value">linkedin.com/in/papeabdoulayegaye</div>
+                </div></a
+              >
+              <a
+                href="https://github.com/papeabdoulayegaye"
+                target="_blank"
+                class="contact-item"
+                ><i class="fab fa-github"></i>
+                <div>
+                  <div class="label">GitHub</div>
+                  <div class="value">github.com/papeabdoulayegaye</div>
+                </div></a
+              >
             </div>
-
-            <!-- Technologies -->
-            <div class="mt-16">
-                <h3 class="text-xl font-semibold mb-8 text-center text-gray-800 dark:text-white">Technologies que j'utilise</h3>
-
-                <div class="flex flex-wrap justify-center gap-8">
-                    <div class="tech-icon" data-tooltip="HTML5">
-                        <i class="fab fa-html5 text-5xl text-orange-500"></i>
-                    </div>
-                    <div class="tech-icon" data-tooltip="CSS3">
-                        <i class="fab fa-css3-alt text-5xl text-blue-500"></i>
-                    </div>
-                    <div class="tech-icon" data-tooltip="JavaScript">
-                        <i class="fab fa-js-square text-5xl text-yellow-400"></i>
-                    </div>
-                    <div class="tech-icon" data-tooltip="PHP">
-                        <i class="fab fa-php text-5xl text-purple-500"></i>
-                    </div>
-                    <div class="tech-icon" data-tooltip="MySQL">
-                        <i class="fas fa-database text-5xl text-blue-600"></i>
-                    </div>
-                    <div class="tech-icon" data-tooltip="Office">
-                        <i class="fas fa-file-excel text-5xl text-green-500"></i>
-                    </div>
+          </div>
+          <div class="contact-form reveal-right">
+            <div class="contact-form-wrapper">
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="name">Nom complet *</label
+                  ><input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Votre nom"
+                    required
+                  />
                 </div>
+                <div class="form-group">
+                  <label for="email">Email *</label
+                  ><input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="votre@email.com"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="subject">Sujet *</label
+                  ><input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Objet du message"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message">Message *</label
+                  ><textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Décrivez votre projet..."
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%"
+                >
+                  <i class="fas fa-paper-plane"></i> Envoyer le message
+                </button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Section Formation -->
-    <section id="education" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Mon Parcours Académique</h2>
-
-            <div class="max-w-3xl mx-auto">
-                <div class="mb-12">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-1/4 mb-4 md:mb-0">
-                            <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">2024 - Présent</h4>
-                        </div>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Licence en Informatique Appliquée à la Gestion des Entreprises</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">Institut Supérieur de Management (ISM), MBOUR</p>
-                            <p class="text-gray-600 dark:text-gray-300">Spécialisation en développement d'applications de gestion et analyse des systèmes d'information.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-12">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-1/4 mb-4 md:mb-0">
-                            <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">2021</h4>
-                        </div>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Baccalauréat Littéraire</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2">Complexe Scolaire International Keur Madior</p>
-                            <p class="text-gray-600 dark:text-gray-300">Option Sciences de la Vie et de la Terre avec mention.</p>
-                        </div>
-                    </div>
-                </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-brand">
+              <div class="footer-logo">PA</div>
+              <div class="footer-brand-name">Pape Abdoulaye Gaye</div>
             </div>
+            <p class="footer-description">
+              Développeur web et spécialiste en systèmes d'information, je mets
+              mes compétences au service de la transformation numérique des
+              entreprises.
+            </p>
+          </div>
+          <div class="footer-column">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="#home">Accueil</a></li>
+              <li><a href="#about">À propos</a></li>
+              <li><a href="#skills">Compétences</a></li>
+              <li><a href="#projects">Projets</a></li>
+              <li><a href="#experience">Expérience</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="mailto:papeabdoulayegaye@gmail.com"
+                  >papeabdoulayegaye@gmail.com</a
+                >
+              </li>
+              <li><a href="tel:+221772636317">+221 77 263 63 17</a></li>
+              <li>
+                <a
+                  href="https://linkedin.com/in/papeabdoulayegaye"
+                  target="_blank"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/papeabdoulaye" target="_blank"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
-
-    <!-- Section Projets -->
-    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Mes Projets</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Projet 1 -->
-                <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-all duration-300">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="promo.jpg"
-                             alt="Projet Dashboard"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <a href="promo.jpg" class="text-white text-lg font-semibold border-2 border-white px-4 py-2 rounded-full hover:bg-white hover:text-indigo-600 transition-colors">Voir le projet</a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Visuel d'un Agence de Voyage et Tourisme</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">Affiche complète avec les services fournis par l'entreprise et leurs contacts.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Adobe Illustrator</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Canva</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projet 2 -->
-                <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition-all duration-300">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1470&q=80"
-                             alt="Projet E-commerce"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" class="text-white text-lg font-semibold border-2 border-white px-4 py-2 rounded-full hover:bg-white hover:text-indigo-600 transition-colors">Voir le projet</a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Plateforme de gestion scolaire</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">Solution pour la gestion des étudiants, des notes et des paiements.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">JavaScript</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Firebase</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-semibold rounded-full">Material UI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors">
-                    Voir plus de projets
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; <span id="year"></span> Pape Abdoulaye Gaye. Tous droits
+            réservés.
+          </p>
+          <p>Mbour/Thiés, Sénégal</p>
         </div>
-    </section>
-
-    <!-- Section Contact -->
-    <section id="contact" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 dark:text-white">Contactez-moi</h2>
-
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-1/2">
-                    <h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Discutons de votre projet</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                        Vous avez un projet en tête ou souhaitez discuter d'une opportunité de collaboration ? N'hésitez pas à me contacter en utilisant le formulaire ou directement par email ou téléphone. Je réponds généralement dans les 24 heures.
-                    </p>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400 mt-1">
-                                <i class="fas fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Email</h4>
-                                <a href="mailto:papeabdoulayegaye@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">papeabdoulayegaye@gmail.com</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400 mt-1">
-                                <i class="fas fa-phone text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Téléphone</h4>
-                                <a href="tel:+221772636317" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">+221 77 263 63 17</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="mr-4 text-indigo-600 dark:text-indigo-400 mt-1">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-white">Adresse</h4>
-                                <p class="text-gray-600 dark:text-gray-300">MBOUR, Sénégal</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-10">
-                        <h4 class="font-semibold text-gray-800 dark:text-white mb-4">Suivez-moi</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://www.facebook.com/papeabdoulayegaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/pape-abdoulaye-gaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://twitter.com/GayePapy" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://www.snapchat.com/add/gayelord7" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                                <i class="fab fa-snapchat-ghost"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:w-1/2">
-                    <form id="contactForm" class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow-lg">
-                        <div class="mb-6">
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nom complet</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sujet</label>
-                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:text-white transition-all"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center">
-                            <span id="submitText">Envoyer le message</span>
-                            <i id="submitIcon" class="fas fa-paper-plane ml-2"></i>
-                            <div id="submitSpinner" class="hidden ml-2">
-                                <i class="fas fa-spinner fa-spin"></i>
-                            </div>
-                        </button>
-
-                        <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-lg">
-                            Votre message a été envoyé avec succès !
-                        </div>
-
-                        <div id="formError" class="hidden mt-4 p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-lg">
-                            Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#home" class="text-2xl font-bold text-indigo-400">Pape A. Gaye</a>
-                    <p class="mt-2 text-gray-400">Licencié en Informatique Appliquée à la Gestion des Entreprises</p>
-                </div>
-
-                <div class="flex flex-col space-y-2">
-                    <a href="#home" class="text-gray-400 hover:text-white transition-colors">Accueil</a>
-                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">À propos</a>
-                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Compétences</a>
-                    <a href="#education" class="text-gray-400 hover:text-white transition-colors">Formation</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
-                </div>
-
-                <div class="mt-6 md:mt-0">
-                    <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/papeabdoulayegaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/pape-abdoulaye-gaye" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://twitter.com/GayePapy" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">© 2024 Pape Abdoulaye Gaye. Tous droits réservés.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Conditions d'utilisation</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </footer>
 
-    <script src="script.js" defer></script>
-</body>
+    <button class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Image agrandie" />
+      </div>
+    </div>
+
+    <script>
+      // Navbar scroll
+      const navbar = document.getElementById("navbar"),
+        navLinks = document.querySelectorAll(".nav-link"),
+        sections = document.querySelectorAll("section[id]");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 80);
+        let current = "";
+        sections.forEach((section) => {
+          if (window.scrollY >= section.offsetTop - 140) current = section.id;
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current)
+            link.classList.add("active");
+        });
+      });
+
+      // Mobile menu
+      const navToggle = document.getElementById("navToggle"),
+        navMenu = document.getElementById("navMenu");
+      navToggle.addEventListener("click", () => {
+        navToggle.classList.toggle("active");
+        navMenu.classList.toggle("open");
+        document.body.style.overflow = navMenu.classList.contains("open")
+          ? "hidden"
+          : "";
+      });
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navToggle.classList.remove("active");
+          navMenu.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            window.scrollTo({ top: target.offsetTop - 70, behavior: "smooth" });
+          }
+        });
+      });
+
+      // Reveal on scroll
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(
+                () => entry.target.classList.add("visible"),
+                index * 100,
+              );
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".reveal,.reveal-left,.reveal-right")
+        .forEach((el) => revealObserver.observe(el));
+
+      // Back to top
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", () =>
+        backToTop.classList.toggle("show", window.scrollY > 500),
+      );
+      backToTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      );
+
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Contact form
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert(
+          "Message envoyé avec succès ! (Fonctionnalité à connecter à votre backend)",
+        );
+        e.target.reset();
+      });
+
+      // Gallery functions
+      let slideIndex = { 2: 1, 3: 1, 4: 1 };
+      function moveSlide(n, galleryId) {
+        showSlide((slideIndex[galleryId] += n), galleryId);
+      }
+      function currentSlide(n, galleryId) {
+        showSlide((slideIndex[galleryId] = n), galleryId);
+      }
+      function showSlide(n, galleryId) {
+        const gallery = document.getElementById("gallery-" + galleryId);
+        const images = gallery.querySelectorAll(".gallery-image");
+        const dots = gallery.querySelectorAll(".dot");
+        if (n > images.length) slideIndex[galleryId] = 1;
+        if (n < 1) slideIndex[galleryId] = images.length;
+        images.forEach((img) => img.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("active"));
+        images[slideIndex[galleryId] - 1].classList.add("active");
+        dots[slideIndex[galleryId] - 1].classList.add("active");
+      }
+
+      // Lightbox functions
+      const lightbox = document.getElementById("lightbox"),
+        lightboxImg = document.getElementById("lightbox-img");
+      function openLightbox(src) {
+        lightboxImg.src = src;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+
+      console.log(
+        "%c 🚀 Portfolio — Pape Abdoulaye Gaye ",
+        "background:#4f8eff;color:#fff;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;",
+      );
+    </script>
+  </body>
 </html>
