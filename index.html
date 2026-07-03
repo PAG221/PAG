@@ -2,7 +2,10 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <meta
       name="description"
       content="Portfolio de Pape Abdoulaye Gaye — Développeur Web & Systèmes d'Information. Spécialisé dans les solutions modernes et la cybersécurité."
@@ -270,6 +273,19 @@
         border-radius: 2px;
         transition: var(--transition);
       }
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 15, 26, 0.5);
+        z-index: 999;
+      }
+      .nav-overlay.active {
+        display: block;
+      }
       .hero {
         min-height: 100vh;
         display: flex;
@@ -497,6 +513,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        loading: lazy;
       }
       @media (min-width: 768px) {
         .hero-image-wrapper {
@@ -505,6 +522,36 @@
           max-width: none;
           aspect-ratio: auto;
         }
+      }
+
+      /* Lazy loading styles */
+      img[loading="lazy"] {
+        background: var(--color-bg-card);
+      }
+      img[loading="lazy"]::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          var(--color-bg-card) 25%,
+          var(--color-border) 50%,
+          var(--color-bg-card) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        opacity: 0;
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+      img[loading="lazy"].loaded {
+        opacity: 1;
       }
       .hero-badge {
         position: static;
@@ -1451,6 +1498,142 @@
         }
       }
 
+      /* Ultra Mobile - below 360px */
+      @media (max-width: 360px) {
+        .hero-name {
+          font-size: clamp(1.5rem, 4vw, 1.8rem);
+        }
+        .hero-title {
+          font-size: 0.75rem;
+          padding: 0.3rem 0.6rem;
+        }
+        .hero-description {
+          font-size: 0.8rem;
+        }
+        .hero-image-wrapper {
+          width: 140px;
+          height: 180px;
+        }
+        .hero-badge {
+          font-size: 0.65rem;
+          padding: 0.3rem 0.6rem;
+        }
+        .social-icon {
+          width: 32px;
+          height: 32px;
+          font-size: 0.8rem;
+        }
+        .section-tag {
+          font-size: 0.65rem;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+        .stat-number {
+          font-size: 1.6rem;
+        }
+        .stat-label {
+          font-size: 0.7rem;
+        }
+        .nav-menu {
+          width: 200px;
+        }
+        .nav-link {
+          font-size: 1rem;
+          padding: 0.7rem 1rem;
+        }
+        .project-image,
+        .project-gallery {
+          height: 140px;
+        }
+        .gallery-btn {
+          width: 24px;
+          height: 24px;
+          font-size: 0.7rem;
+        }
+        .gallery-dots .dot {
+          width: 6px;
+          height: 6px;
+        }
+        .contact-form-wrapper {
+          padding: 1.25rem;
+        }
+        .form-group input,
+        .form-group textarea {
+          padding: 0.75rem 1rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      /* iPhone SE and smaller devices */
+      @media (max-width: 320px) {
+        .hero-name {
+          font-size: 1.5rem;
+        }
+        .hero-title {
+          font-size: 0.7rem;
+        }
+        .hero-image-wrapper {
+          width: 120px;
+          height: 160px;
+        }
+        .hero-eyebrow {
+          font-size: 0.65rem;
+        }
+        .hero-description {
+          font-size: 0.75rem;
+        }
+        .section {
+          padding: 2.5rem 0;
+        }
+        .section-header {
+          margin-bottom: 2rem;
+        }
+        .about-stats {
+          gap: 0.75rem;
+        }
+        .stat-card {
+          padding: 1rem;
+        }
+        .skills-grid {
+          gap: 1rem;
+        }
+        .skill-category {
+          padding: 1.5rem;
+        }
+        .projects-grid {
+          gap: 1rem;
+        }
+        .project-card {
+          border-radius: 12px;
+        }
+        .project-content {
+          padding: 1rem;
+        }
+        .project-description {
+          font-size: 0.85rem;
+        }
+        .timeline-item {
+          padding-left: 60px;
+          margin-bottom: 2rem;
+        }
+        .timeline-content {
+          padding: 1.25rem;
+        }
+        .contact-details {
+          gap: 0.75rem;
+        }
+        .contact-item {
+          padding: 0.75rem 1rem;
+        }
+        .footer-content {
+          gap: 1.5rem;
+        }
+        .footer-bottom {
+          padding-top: 1rem;
+        }
+      }
+
       /* Touch device optimizations */
       @media (hover: none) and (pointer: coarse) {
         .btn {
@@ -1603,19 +1786,31 @@
   <body>
     <nav class="navbar" id="navbar">
       <div class="nav-inner">
-        <a href="#home" class="nav-logo">P<span class="accent">A</span></a>
-        <ul class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-logo" aria-label="Accueil"
+          >P<span class="accent">A</span></a
+        >
+        <ul
+          class="nav-menu"
+          id="navMenu"
+          role="navigation"
+          aria-label="Menu principal"
+        >
           <li><a href="#home" class="nav-link active">Accueil</a></li>
           <li><a href="#about" class="nav-link">À propos</a></li>
-          ```
           <li><a href="#skills" class="nav-link">Compétences</a></li>
           <li><a href="#projects" class="nav-link">Projets</a></li>
           <li><a href="#experience" class="nav-link">Expérience</a></li>
           <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
         </ul>
-        <div class="nav-toggle" id="navToggle">
+        <div
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
           <span></span><span></span><span></span>
         </div>
+        <div class="nav-overlay" id="navOverlay"></div>
       </div>
     </nav>
 
@@ -2315,7 +2510,11 @@
       // Navbar scroll
       const navbar = document.getElementById("navbar"),
         navLinks = document.querySelectorAll(".nav-link"),
-        sections = document.querySelectorAll("section[id]");
+        sections = document.querySelectorAll("section[id]"),
+        navToggle = document.getElementById("navToggle"),
+        navMenu = document.getElementById("navMenu"),
+        navOverlay = document.getElementById("navOverlay");
+
       window.addEventListener("scroll", () => {
         navbar.classList.toggle("scrolled", window.scrollY > 80);
         let current = "";
@@ -2330,21 +2529,41 @@
       });
 
       // Mobile menu
-      const navToggle = document.getElementById("navToggle"),
-        navMenu = document.getElementById("navMenu");
+      function closeMenu() {
+        navToggle.classList.remove("active");
+        navMenu.classList.remove("open");
+        navOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+
+      function openMenu() {
+        navToggle.classList.add("active");
+        navMenu.classList.add("open");
+        navOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+        navToggle.setAttribute("aria-expanded", "true");
+      }
+
       navToggle.addEventListener("click", () => {
-        navToggle.classList.toggle("active");
-        navMenu.classList.toggle("open");
-        document.body.style.overflow = navMenu.classList.contains("open")
-          ? "hidden"
-          : "";
+        if (navMenu.classList.contains("open")) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
+
+      navOverlay.addEventListener("click", closeMenu);
+
       navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          navToggle.classList.remove("active");
-          navMenu.classList.remove("open");
-          document.body.style.overflow = "";
-        });
+        link.addEventListener("click", closeMenu);
+      });
+
+      // Close menu on escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && navMenu.classList.contains("open")) {
+          closeMenu();
+        }
       });
 
       // Smooth scroll
@@ -2436,6 +2655,29 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeLightbox();
       });
+
+      // Lazy loading for images
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      lazyImages.forEach((img) => {
+        img.addEventListener("load", () => {
+          img.classList.add("loaded");
+        });
+      });
+
+      // Fallback for browsers without native lazy loading
+      if (!("loading" in HTMLImageElement.prototype)) {
+        const lazyImageObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              img.classList.add("loaded");
+              lazyImageObserver.unobserve(img);
+            }
+          });
+        });
+        lazyImages.forEach((img) => lazyImageObserver.observe(img));
+      }
 
       console.log(
         "%c 🚀 Portfolio — Pape Abdoulaye Gaye ",
