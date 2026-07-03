@@ -41,6 +41,7 @@
         color: #e8eaf0;
         line-height: 1.7;
         overflow-x: hidden;
+        width: 100%;
       }
       img {
         max-width: 100%;
@@ -98,9 +99,26 @@
         font-size: 1.1rem;
       }
       .container {
-        max-width: 1200px;
+        width: 100%;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0 1rem;
+      }
+      @media (min-width: 576px) {
+        .container {
+          padding: 0 1.25rem;
+        }
+      }
+      @media (min-width: 768px) {
+        .container {
+          max-width: 1200px;
+          padding: 0 2rem;
+        }
+      }
+      @media (min-width: 1440px) {
+        .container {
+          max-width: 1400px;
+        }
       }
       .section {
         padding: 6rem 0;
@@ -279,13 +297,22 @@
       .hero-container {
         position: relative;
         z-index: 2;
-        max-width: 1200px;
+        width: 100%;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0 1rem;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        grid-template-columns: 1fr;
+        gap: 2rem;
         align-items: center;
+      }
+      @media (min-width: 768px) {
+        .hero-container {
+          max-width: 1200px;
+          padding: 0 2rem;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
       }
       .hero-content {
         display: flex;
@@ -424,8 +451,10 @@
         align-items: center;
       }
       .hero-image-wrapper {
-        width: 320px;
-        height: 380px;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 4 / 5;
         border-radius: 24px;
         background: linear-gradient(
           135deg,
@@ -451,6 +480,14 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+      @media (min-width: 768px) {
+        .hero-image-wrapper {
+          width: 320px;
+          height: 380px;
+          max-width: none;
+          aspect-ratio: auto;
+        }
       }
       .hero-badge {
         position: absolute;
