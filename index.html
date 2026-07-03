@@ -199,9 +199,16 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 1200px;
+        width: 100%;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0 1rem;
+      }
+      @media (min-width: 768px) {
+        .nav-inner {
+          max-width: 1200px;
+          padding: 0 2rem;
+        }
       }
       .nav-logo {
         font-family: "Poppins", sans-serif;
@@ -293,6 +300,16 @@
           black 30%,
           transparent 80%
         );
+      }
+      @media (max-width: 768px) {
+        .hero-dots {
+          background-size: 25px 25px;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-dots {
+          background-size: 20px 20px;
+        }
       }
       .hero-container {
         position: relative;
@@ -490,13 +507,13 @@
         }
       }
       .hero-badge {
-        position: absolute;
+        position: static;
         background: rgba(13, 20, 36, 0.9);
         border: 1px solid var(--color-border);
         backdrop-filter: blur(10px);
         border-radius: 12px;
         padding: 0.6rem 1rem;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         color: var(--color-text);
@@ -504,18 +521,28 @@
         font-weight: 500;
         box-shadow: var(--shadow-md);
         animation: float 6s ease-in-out infinite;
+        margin: 0.5rem;
       }
       .hero-badge i {
         color: var(--color-primary);
       }
-      .hero-badge.top-right {
-        top: 20px;
-        right: -40px;
-      }
+      .hero-badge.top-right,
       .hero-badge.bottom-left {
-        bottom: 40px;
-        left: -50px;
-        animation-delay: 2s;
+        position: static;
+        margin: 0.5rem;
+      }
+      @media (min-width: 768px) {
+        .hero-badge {
+          position: absolute;
+        }
+        .hero-badge.top-right {
+          top: 20px;
+          right: -40px;
+        }
+        .hero-badge.bottom-left {
+          bottom: 40px;
+          left: -50px;
+        }
       }
       @keyframes float {
         0%,
@@ -547,9 +574,15 @@
       }
       .about-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        grid-template-columns: 1fr;
+        gap: 2rem;
         align-items: center;
+      }
+      @media (min-width: 768px) {
+        .about-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
       }
       .about-text h3 {
         margin-bottom: 1rem;
@@ -564,9 +597,14 @@
       }
       .about-stats {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 2rem;
+      }
+      @media (min-width: 576px) {
+        .about-stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
       }
       .stat-card {
         background: var(--color-glass);
@@ -962,8 +1000,14 @@
       }
       .contact-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      @media (min-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
       }
       .contact-info h3 {
         margin-bottom: 1rem;
@@ -1057,9 +1101,15 @@
       }
       .footer-content {
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 3rem;
+        grid-template-columns: 1fr;
+        gap: 2rem;
         margin-bottom: 3rem;
+      }
+      @media (min-width: 768px) {
+        .footer-content {
+          grid-template-columns: 2fr 1fr 1fr;
+          gap: 3rem;
+        }
       }
       .footer-brand {
         display: flex;
@@ -1172,11 +1222,6 @@
           grid-template-columns: 1fr;
           text-align: center;
           gap: 3rem;
-        }
-        .about-grid,
-        .contact-grid,
-        .footer-content {
-          grid-template-columns: 1fr;
         }
         .hero-image-wrapper {
           width: 280px;
@@ -1354,9 +1399,6 @@
         .gallery-dots .dot {
           width: 7px;
           height: 7px;
-        }
-        .footer-content {
-          gap: 2rem;
         }
         .footer-bottom {
           flex-direction: column;
