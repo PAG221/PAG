@@ -35,9 +35,11 @@
         padding: 0;
         box-sizing: border-box;
       }
+      /* Fix: Scroll padding to prevent header from hiding content on navigation */
       html {
         scroll-behavior: smooth;
         font-size: 16px;
+        scroll-padding-top: 80px;
       }
       body {
         font-family: "Inter", sans-serif;
@@ -127,9 +129,11 @@
           max-width: 1400px;
         }
       }
+      /* Fix: Scroll margin to prevent header from hiding content on navigation */
       .section {
         padding: 6rem 0;
         position: relative;
+        scroll-margin-top: 80px;
       }
       .section-header {
         text-align: center;
@@ -625,6 +629,7 @@
           transform: translateY(-10px);
         }
       }
+      /* Fix: About section - centered content without image */
       .about {
         background: var(--color-bg-secondary);
         position: relative;
@@ -644,27 +649,20 @@
           transparent
         );
       }
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        align-items: center;
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
       }
-      @media (min-width: 768px) {
-        .about-grid {
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-        }
-      }
-      .about-text h3 {
+      .about-content h3 {
         margin-bottom: 1rem;
       }
-      .about-text p {
+      .about-content p {
         color: var(--color-text-secondary);
         line-height: 1.8;
         margin-bottom: 1.5rem;
       }
-      .about-text p strong {
+      .about-content p strong {
         color: var(--color-text);
       }
       .about-stats {
@@ -1538,10 +1536,10 @@
           margin-bottom: 2.5rem;
         }
         .project-image {
-          height: 160px;
+          min-height: 140px;
         }
         .project-gallery {
-          height: 160px;
+          min-height: 140px;
         }
         .gallery-btn {
           width: 28px;
@@ -1600,6 +1598,73 @@
         }
       }
 
+      /* Mobile 360px - Common Android screen size */
+      @media (max-width: 360px) {
+        .hero-name {
+          font-size: clamp(1.6rem, 4vw, 2rem);
+        }
+        .hero-title {
+          font-size: 0.75rem;
+          padding: 0.25rem 0.6rem;
+        }
+        .hero-description {
+          font-size: 0.75rem;
+        }
+        .hero-image-wrapper {
+          width: 140px;
+          height: 180px;
+        }
+        .hero-badge {
+          font-size: 0.6rem;
+          padding: 0.25rem 0.5rem;
+        }
+        .social-icon {
+          width: 30px;
+          height: 30px;
+          font-size: 0.75rem;
+        }
+        .section-tag {
+          font-size: 0.6rem;
+        }
+        .section-title {
+          font-size: 1.4rem;
+        }
+        .stat-number {
+          font-size: 1.5rem;
+        }
+        .stat-label {
+          font-size: 0.65rem;
+        }
+        .nav-menu {
+          width: 180px;
+        }
+        .nav-link {
+          font-size: 0.9rem;
+          padding: 0.6rem 0.9rem;
+        }
+        .project-image,
+        .project-gallery {
+          min-height: 130px;
+        }
+        .gallery-btn {
+          width: 22px;
+          height: 22px;
+          font-size: 0.65rem;
+        }
+        .gallery-dots .dot {
+          width: 5px;
+          height: 5px;
+        }
+        .contact-form-wrapper {
+          padding: 1.1rem;
+        }
+        .form-group input,
+        .form-group textarea {
+          padding: 0.7rem 0.9rem;
+          font-size: 0.8rem;
+        }
+      }
+
       /* Mobile Extra Small - 375px to 389px */
       @media (max-width: 375px) {
         .hero-name {
@@ -1646,7 +1711,7 @@
         }
         .project-image,
         .project-gallery {
-          height: 140px;
+          min-height: 140px;
         }
         .gallery-btn {
           width: 24px;
@@ -1972,6 +2037,7 @@
       </div>
     </section>
 
+    <!-- Fix: Removed profile image from About section, centered content -->
     <section class="about section" id="about">
       <div class="container">
         <div class="section-header reveal">
@@ -1980,39 +2046,32 @@
           </div>
           <h2 class="section-title">À propos de <em>moi</em></h2>
         </div>
-        <div class="about-grid">
-          <div class="about-text reveal-left">
-            <h3>Développeur passionné et expert en systèmes d'information</h3>
-            <p>
-              Je suis <strong>Pape Abdoulaye Gaye</strong>, développeur web et
-              spécialiste en systèmes d'information. Mon parcours académique en
-              Licence IAGE m'a permis d'acquérir des compétences solides dans le
-              développement web et l'analyse de systèmes informatiques.
-            </p>
-            <p>
-              Passionné par la création d'expériences numériques
-              exceptionnelles, j'ai également développé un intérêt particulier
-              pour la <strong>cybersécurité</strong>, un domaine essentiel dans
-              notre société connectée.
-            </p>
-            <div class="about-stats">
-              <div class="stat-card">
-                <div class="stat-number">2026</div>
-                <div class="stat-label">Diplômé IAGE</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number">4+</div>
-                <div class="stat-label">Projets réalisés</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number">8+</div>
-                <div class="stat-label">Technologies</div>
-              </div>
+        <div class="about-content reveal-left">
+          <h3>Développeur passionné et expert en systèmes d'information</h3>
+          <p>
+            Je suis <strong>Pape Abdoulaye Gaye</strong>, développeur web et
+            spécialiste en systèmes d'information. Mon parcours académique en
+            Licence IAGE m'a permis d'acquérir des compétences solides dans le
+            développement web et l'analyse de systèmes informatiques.
+          </p>
+          <p>
+            Passionné par la création d'expériences numériques exceptionnelles,
+            j'ai également développé un intérêt particulier pour la
+            <strong>cybersécurité</strong>, un domaine essentiel dans notre
+            société connectée.
+          </p>
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">2026</div>
+              <div class="stat-label">Diplômé IAGE</div>
             </div>
-          </div>
-          <div class="about-image reveal-right">
-            <div class="hero-image-wrapper">
-              <img src="pag.jpeg" alt="Pape Abdoulaye Gaye" />
+            <div class="stat-card">
+              <div class="stat-number">4+</div>
+              <div class="stat-label">Projets réalisés</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">8+</div>
+              <div class="stat-label">Technologies</div>
             </div>
           </div>
         </div>
