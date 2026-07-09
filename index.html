@@ -2003,14 +2003,14 @@
           <div class="hero-social">
             <span>Suivez-moi</span>
             <a
-              href="https://linkedin.com/in/papeabdoulayegaye"
+              href="https://www.linkedin.com/in/pape-abdoulaye-gaye-597438298/"
               target="_blank"
               class="social-icon"
               title="LinkedIn"
               ><i class="fab fa-linkedin-in"></i
             ></a>
             <a
-              href="https://github.com/papeabdoulayegaye"
+              href="https://github.com/PAG221"
               target="_blank"
               class="social-icon"
               title="GitHub"
@@ -2491,23 +2491,23 @@
                 </div></a
               >
               <a
-                href="https://linkedin.com/in/papeabdoulayegaye"
+                href="https://www.linkedin.com/in/pape-abdoulaye-gaye-597438298/"
                 target="_blank"
                 class="contact-item"
                 ><i class="fab fa-linkedin-in"></i>
                 <div>
                   <div class="label">LinkedIn</div>
-                  <div class="value">linkedin.com/in/papeabdoulayegaye</div>
+                  <div class="value">linkedin.com/in/pape-abdoulaye-gaye</div>
                 </div></a
               >
               <a
-                href="https://github.com/papeabdoulayegaye"
+                href="https://github.com/PAG221"
                 target="_blank"
                 class="contact-item"
                 ><i class="fab fa-github"></i>
                 <div>
                   <div class="label">GitHub</div>
-                  <div class="value">github.com/papeabdoulayegaye</div>
+                  <div class="value">github.com/PAG221</div>
                 </div></a
               >
             </div>
@@ -2605,15 +2605,13 @@
               <li><a href="tel:+221772636317">+221 77 263 63 17</a></li>
               <li>
                 <a
-                  href="https://linkedin.com/in/papeabdoulayegaye"
+                  href="https://www.linkedin.com/in/pape-abdoulaye-gaye-597438298/"
                   target="_blank"
                   >LinkedIn</a
                 >
               </li>
               <li>
-                <a href="https://github.com/papeabdoulaye" target="_blank"
-                  >GitHub</a
-                >
+                <a href="https://github.com/PAG221" target="_blank">GitHub</a>
               </li>
             </ul>
           </div>
@@ -2756,11 +2754,18 @@
       // Footer year
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Contact form
+      // Fix: Contact form - redirect to WhatsApp
       document.getElementById("contactForm").addEventListener("submit", (e) => {
         e.preventDefault();
-        alert(
-          "Message envoyé avec succès ! (Fonctionnalité à connecter à votre backend)",
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+        const whatsappMessage = `Bonjour Pape, je suis ${name} (${email}). Sujet: ${subject}. Message: ${message}`;
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        window.open(
+          `https://wa.me/221772636317?text=${encodedMessage}`,
+          "_blank",
         );
         e.target.reset();
       });
