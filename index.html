@@ -34,12 +34,20 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        /* Fix: empêche tout mot/URL/email long (sans espace) de faire déborder
+           son conteneur horizontalement sur petits écrans */
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
       /* Fix: Scroll padding to prevent header from hiding content on navigation */
       html {
         scroll-behavior: smooth;
         font-size: 16px;
         scroll-padding-top: 80px;
+        /* Fix: certains navigateurs mobiles (Safari iOS notamment) appliquent
+           le scroll horizontal sur <html> et ignorent overflow-x sur <body> */
+        overflow-x: hidden;
+        width: 100%;
       }
       body {
         font-family: "Inter", sans-serif;
@@ -48,6 +56,7 @@
         line-height: 1.7;
         overflow-x: hidden;
         width: 100%;
+        max-width: 100vw;
       }
       /* Fix: Ensure all media elements are responsive */
       img,
@@ -1171,6 +1180,7 @@
         background: rgba(79, 142, 255, 0.05);
       }
       .contact-item i {
+        flex-shrink: 0;
         width: 40px;
         height: 40px;
         background: rgba(79, 142, 255, 0.15);
@@ -1179,6 +1189,12 @@
         align-items: center;
         justify-content: center;
         color: var(--color-primary);
+      }
+      /* Fix: permet au bloc label+valeur de rétrécir dans le flex parent
+         au lieu de forcer un débordement horizontal (bug sur petits écrans) */
+      .contact-item > div {
+        min-width: 0;
+        flex: 1;
       }
       .contact-item .label {
         font-size: 0.75rem;
@@ -1189,6 +1205,8 @@
       .contact-item .value {
         font-size: 0.95rem;
         color: var(--color-text);
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
       .contact-form-wrapper {
         background: var(--color-bg-card);
@@ -1485,6 +1503,10 @@
         .btn {
           justify-content: center;
           width: 100%;
+          /* Fix: évite que le texte du bouton (ex: "Télécharger mon CV")
+             déborde du bouton pleine largeur sur très petits écrans */
+          white-space: normal;
+          text-align: center;
         }
         .hero-name {
           font-size: clamp(2.2rem, 5vw, 2.8rem);
