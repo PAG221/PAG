@@ -2,6 +2,20 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <!-- Applique le thème stocké avant le premier rendu (évite le flash) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("portfolio-theme");
+          if (!t) {
+            t = window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
     <!-- Responsive meta viewport - optimized for all devices -->
     <meta
       name="viewport"
@@ -16,11 +30,74 @@
       content="développeur web, PHP, JavaScript, MySQL, systèmes d'information, cybersécurité, portfolio"
     />
     <meta name="author" content="Pape Abdoulaye Gaye" />
-    <title>Pape Abdoulaye Gaye | Développeur Web & SI</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0f1a" />
+    <title>Pape Abdoulaye Gaye | Développeur Web & Systèmes d'Information</title>
+
+    <!-- Favicon SVG (monogramme PA) -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0f1a'/%3E%3Ctext x='50' y='68' font-family='Poppins,Arial,sans-serif' font-size='52' font-weight='800' fill='%234f8eff' text-anchor='middle'%3EP%3Ctspan fill='%2300d4ff'%3EA%3C/tspan%3E%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- Open Graph / réseaux sociaux -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta
+      property="og:title"
+      content="Pape Abdoulaye Gaye | Développeur Web & Systèmes d'Information"
+    />
+    <meta
+      property="og:description"
+      content="Développeur web passionné (Licence IAGE) — solutions modernes, performantes et sécurisées. Découvrez mes projets et mon parcours."
+    />
+    <meta property="og:image" content="pag.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Pape Abdoulaye Gaye | Développeur Web & SI"
+    />
+    <meta
+      name="twitter:description"
+      content="Développeur web passionné (Licence IAGE) — solutions modernes, performantes et sécurisées."
+    />
+    <meta name="twitter:image" content="pag.jpeg" />
+
+    <!-- Données structurées (schema.org Person) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Pape Abdoulaye Gaye",
+        "jobTitle": "Développeur Web & Systèmes d'Information",
+        "email": "mailto:papeabdoulayegaye@gmail.com",
+        "telephone": "+221772636317",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Mbour / Thiès",
+          "addressCountry": "SN"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/pape-abdoulaye-gaye-597438298/",
+          "https://github.com/PAG221"
+        ],
+        "knowsAbout": [
+          "Développement Web",
+          "PHP",
+          "JavaScript",
+          "MySQL",
+          "Java",
+          "Systèmes d'information",
+          "Cybersécurité"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -51,12 +128,15 @@
       }
       body {
         font-family: "Inter", sans-serif;
-        background: #0a0f1a;
-        color: #e8eaf0;
+        background: var(--color-bg);
+        color: var(--color-text);
         line-height: 1.7;
         overflow-x: hidden;
         width: 100%;
         max-width: 100vw;
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease;
       }
       /* Fix: Ensure all media elements are responsive */
       img,
@@ -85,6 +165,8 @@
         --color-bg: #0a0f1a;
         --color-bg-secondary: #0d1424;
         --color-bg-card: #121a2e;
+        --color-bg-rgb: 10, 15, 26;
+        --color-card-rgb: 18, 26, 46;
         --color-text: #e8eaf0;
         --color-text-secondary: rgba(232, 234, 240, 0.7);
         --color-text-tertiary: rgba(232, 234, 240, 0.4);
@@ -95,6 +177,57 @@
         --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.4);
         --radius: 16px;
         --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        --font-mono: "JetBrains Mono", ui-monospace, monospace;
+        --gradient-brand: linear-gradient(
+          135deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+        color-scheme: dark;
+      }
+      /* Thème clair — activé via data-theme="light" sur <html> */
+      :root[data-theme="light"] {
+        --color-primary: #2563eb;
+        --color-primary-dark: #1d4ed8;
+        --color-accent: #0891b2;
+        --color-bg: #f6f8fc;
+        --color-bg-secondary: #ffffff;
+        --color-bg-card: #ffffff;
+        --color-bg-rgb: 246, 248, 252;
+        --color-card-rgb: 255, 255, 255;
+        --color-text: #0f172a;
+        --color-text-secondary: rgba(15, 23, 42, 0.68);
+        --color-text-tertiary: rgba(15, 23, 42, 0.42);
+        --color-border: rgba(37, 99, 235, 0.15);
+        --color-glass: rgba(15, 23, 42, 0.035);
+        --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+        --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+        --shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.12);
+        color-scheme: light;
+      }
+      /* Transition douce entre thèmes pour les surfaces principales */
+      .navbar,
+      .nav-menu,
+      .hero-badge,
+      .hero-title,
+      .skill-category,
+      .project-card,
+      .project-image,
+      .stat-card,
+      .timeline-content,
+      .contact-item,
+      .contact-form-wrapper,
+      .form-group input,
+      .form-group textarea,
+      .footer,
+      .nav-overlay,
+      .theme-toggle {
+        transition:
+          background-color 0.4s ease,
+          border-color 0.4s ease,
+          color 0.4s ease,
+          box-shadow 0.4s ease,
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
       h1,
       h2,
@@ -152,9 +285,10 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
+        font-family: var(--font-mono);
         font-size: 0.75rem;
         font-weight: 600;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--color-primary);
         margin-bottom: 1rem;
@@ -170,7 +304,10 @@
         margin-bottom: 1rem;
       }
       .section-title em {
-        color: var(--color-primary);
+        background: var(--gradient-brand);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
         font-style: italic;
       }
       .reveal {
@@ -209,14 +346,15 @@
         padding: 1rem 0;
         transition: var(--transition);
         min-height: 60px;
-        background: rgba(10, 15, 26, 0.95);
+        background: rgba(var(--color-bg-rgb), 0.85);
         backdrop-filter: blur(10px);
       }
       .navbar.scrolled {
-        background: rgba(10, 15, 26, 0.95);
+        background: rgba(var(--color-bg-rgb), 0.9);
         backdrop-filter: blur(20px);
         padding: 0.75rem 0;
         border-bottom: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
       }
       .nav-inner {
         display: flex;
@@ -235,20 +373,77 @@
       }
       .nav-logo {
         font-family: "Poppins", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         font-weight: 800;
-        color: var(--color-text);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: var(--gradient-brand);
+        box-shadow: 0 4px 16px rgba(79, 142, 255, 0.35);
+        transition: var(--transition);
+      }
+      .nav-logo:hover {
+        transform: rotate(-6deg) scale(1.05);
+      }
+      .nav-logo .accent {
+        color: #fff;
+      }
+      .nav-right {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-      }
-      .nav-logo .accent {
-        color: var(--color-primary);
       }
       .nav-menu {
         display: flex;
         align-items: center;
         gap: 0.5rem;
+      }
+      .theme-toggle {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: var(--color-glass);
+        border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-secondary);
+        font-size: 1rem;
+        margin-left: 0.5rem;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        transform: translateY(-2px);
+      }
+      .theme-toggle .icon-sun,
+      .theme-toggle .icon-moon {
+        position: absolute;
+        transition:
+          opacity 0.3s ease,
+          transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .theme-toggle .icon-sun {
+        opacity: 0;
+        transform: rotate(90deg) scale(0.5);
+      }
+      .theme-toggle .icon-moon {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      }
+      :root[data-theme="light"] .theme-toggle .icon-sun {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      }
+      :root[data-theme="light"] .theme-toggle .icon-moon {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
       }
       .nav-link {
         color: var(--color-text-secondary);
@@ -300,7 +495,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(10, 15, 26, 0.5);
+        background: rgba(var(--color-bg-rgb), 0.5);
         z-index: 999;
       }
       .nav-overlay.active {
@@ -408,14 +603,18 @@
         color: var(--color-text);
       }
       .hero-name .last {
-        color: var(--color-primary);
+        background: var(--gradient-brand);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
         font-style: italic;
       }
       .hero-title {
-        font-size: 1.1rem;
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
         color: var(--color-accent);
         font-weight: 500;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.02em;
         padding: 0.5rem 1rem;
         background: rgba(0, 212, 255, 0.08);
         border: 1px solid rgba(0, 212, 255, 0.2);
@@ -462,12 +661,14 @@
         white-space: nowrap;
       }
       .btn-primary {
-        background: var(--color-primary);
+        background: var(--gradient-brand);
+        background-size: 160% 160%;
+        background-position: 0% 50%;
         color: #fff;
         box-shadow: 0 0 25px rgba(79, 142, 255, 0.3);
       }
       .btn-primary:hover {
-        background: var(--color-primary-dark);
+        background-position: 100% 50%;
         transform: translateY(-2px);
         box-shadow: 0 0 35px rgba(79, 142, 255, 0.5);
       }
@@ -591,7 +792,7 @@
       /* Fix: Hero badges - responsive positioning and wrapping */
       .hero-badge {
         position: static;
-        background: rgba(13, 20, 36, 0.9);
+        background: rgba(var(--color-card-rgb), 0.9);
         border: 1px solid var(--color-border);
         backdrop-filter: blur(10px);
         border-radius: 12px;
@@ -600,7 +801,8 @@
         align-items: center;
         gap: 0.5rem;
         color: var(--color-text);
-        font-size: 0.85rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
         font-weight: 500;
         box-shadow: var(--shadow-md);
         animation: float 6s ease-in-out infinite;
@@ -786,6 +988,7 @@
         }
       }
       .project-card {
+        position: relative;
         background: var(--color-bg-card);
         border: 1px solid var(--color-border);
         border-radius: var(--radius);
@@ -794,16 +997,36 @@
         display: flex;
         flex-direction: column;
       }
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gradient-brand);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+        z-index: 1;
+      }
+      .project-card:hover::before {
+        transform: scaleX(1);
+      }
       .project-card:hover {
         border-color: var(--color-primary);
         transform: translateY(-5px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        box-shadow: var(--shadow-lg);
       }
       /* Fix: Project images - show full image without cropping */
       .project-image {
         position: relative;
         overflow: hidden;
-        background: linear-gradient(135deg, #1a2a4f, #0d1a3a);
+        background: linear-gradient(
+          135deg,
+          var(--color-bg-card),
+          var(--color-bg-secondary)
+        );
         min-height: 180px;
       }
       .project-image img {
@@ -845,7 +1068,8 @@
         background: var(--color-glass);
         border: 1px solid var(--color-border);
         color: var(--color-primary);
-        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
         padding: 0.25rem 0.75rem;
         border-radius: 100px;
       }
@@ -1097,22 +1321,26 @@
       .timeline-content {
         background: var(--color-bg-card);
         border: 1px solid var(--color-border);
+        border-left: 3px solid transparent;
         border-radius: var(--radius);
         padding: 2rem;
         transition: var(--transition);
       }
       .timeline-content:hover {
         border-color: var(--color-primary);
+        border-left-color: var(--color-accent);
         transform: translateX(10px);
+        box-shadow: var(--shadow-md);
       }
       .timeline-badge {
         display: inline-block;
         background: rgba(79, 142, 255, 0.15);
         color: var(--color-primary);
-        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         padding: 0.3rem 0.85rem;
         border-radius: 100px;
         margin-bottom: 1rem;
@@ -1134,7 +1362,8 @@
         background: var(--color-glass);
         border: 1px solid var(--color-border);
         color: var(--color-text-tertiary);
-        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
         padding: 0.25rem 0.7rem;
         border-radius: 100px;
       }
@@ -1429,13 +1658,15 @@
           right: -100%;
           width: 260px;
           height: 100vh;
-          background: rgba(10, 15, 26, 0.95);
+          background: rgba(var(--color-bg-rgb), 0.97);
           backdrop-filter: blur(20px);
           flex-direction: column;
           justify-content: center;
           gap: 0.5rem;
           padding: 2rem;
-          transition: right 0.4s ease;
+          transition:
+            right 0.4s ease,
+            background-color 0.4s ease;
           border-left: 1px solid var(--color-border);
         }
         .nav-menu.open {
@@ -1960,34 +2191,134 @@
           break-inside: avoid;
         }
       }
+
+      /* ========================================
+         AMÉLIORATIONS PRO
+         ======================================== */
+
+      /* Barre de progression de lecture */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: linear-gradient(
+          90deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+        z-index: 1100;
+        transition: width 0.1s linear;
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      }
+
+      /* Rôle animé (machine à écrire) dans le hero */
+      .hero-roles {
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+      }
+      .hero-roles .typed-text {
+        color: var(--color-accent);
+        font-weight: 600;
+      }
+      .hero-roles .typed-text {
+        border-right: 2px solid var(--color-accent);
+        padding-right: 3px;
+        animation: caret 0.8s step-end infinite;
+      }
+      @keyframes caret {
+        0%,
+        100% {
+          border-color: transparent;
+        }
+        50% {
+          border-color: var(--color-accent);
+        }
+      }
+
+      /* Cartes de compétences : léger dégradé au survol */
+      .skill-category {
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-category::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+        transition: left 0.5s ease;
+      }
+      .skill-category:hover::after {
+        left: 0;
+      }
+
+      /* Compteurs : évite le "saut" de largeur pendant l'animation */
+      .stat-number {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Focus visible accessible pour la navigation clavier */
+      a:focus-visible,
+      button:focus-visible,
+      .nav-toggle:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      [tabindex]:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
     </style>
   </head>
   <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
     <nav class="navbar" id="navbar">
       <div class="nav-inner">
         <a href="#home" class="nav-logo" aria-label="Accueil"
           >P<span class="accent">A</span></a
         >
-        <ul
-          class="nav-menu"
-          id="navMenu"
-          role="navigation"
-          aria-label="Menu principal"
-        >
-          <li><a href="#home" class="nav-link active">Accueil</a></li>
-          <li><a href="#about" class="nav-link">À propos</a></li>
-          <li><a href="#skills" class="nav-link">Compétences</a></li>
-          <li><a href="#projects" class="nav-link">Projets</a></li>
-          <li><a href="#experience" class="nav-link">Expérience</a></li>
-          <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
-        </ul>
-        <div
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Menu"
-          aria-expanded="false"
-        >
-          <span></span><span></span><span></span>
+        <div class="nav-right">
+          <ul
+            class="nav-menu"
+            id="navMenu"
+            role="navigation"
+            aria-label="Menu principal"
+          >
+            <li><a href="#home" class="nav-link active">Accueil</a></li>
+            <li><a href="#about" class="nav-link">À propos</a></li>
+            <li><a href="#skills" class="nav-link">Compétences</a></li>
+            <li><a href="#projects" class="nav-link">Projets</a></li>
+            <li><a href="#experience" class="nav-link">Expérience</a></li>
+            <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+          </ul>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Basculer entre le mode clair et le mode sombre"
+            title="Changer de thème"
+          >
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+          </button>
+          <div
+            class="nav-toggle"
+            id="navToggle"
+            aria-label="Menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </div>
         </div>
         <div class="nav-overlay" id="navOverlay"></div>
       </div>
@@ -2005,6 +2336,9 @@
             Pape <span class="last">Abdoulaye Gaye</span>
           </h1>
           <div class="hero-title">Développeur Web & Systèmes d'Information</div>
+          <div class="hero-roles" aria-hidden="true">
+            Je crée des <span class="typed-text" id="typedText"></span>
+          </div>
           <p class="hero-description">
             Titulaire d'une <strong>Licence IAGE</strong>, passionné par le
             développement web, les systèmes d'information et la cybersécurité.
@@ -2086,15 +2420,15 @@
           </p>
           <div class="about-stats">
             <div class="stat-card">
-              <div class="stat-number">2026</div>
+              <div class="stat-number" data-count="2026" data-suffix="">2026</div>
               <div class="stat-label">Diplômé IAGE</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">4+</div>
+              <div class="stat-number" data-count="4" data-suffix="+">0</div>
               <div class="stat-label">Projets réalisés</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">8+</div>
+              <div class="stat-number" data-count="8" data-suffix="+">0</div>
               <div class="stat-label">Technologies</div>
             </div>
           </div>
@@ -2945,6 +3279,134 @@
         });
         lazyImages.forEach((img) => lazyImageObserver.observe(img));
       }
+
+      // Mode clair / sombre
+      (function themeToggleSetup() {
+        const THEME_KEY = "portfolio-theme";
+        const root = document.documentElement;
+        const toggleBtn = document.getElementById("themeToggle");
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+        function applyTheme(theme) {
+          root.setAttribute("data-theme", theme);
+          try {
+            localStorage.setItem(THEME_KEY, theme);
+          } catch (e) {}
+          if (metaThemeColor) {
+            metaThemeColor.setAttribute(
+              "content",
+              theme === "light" ? "#f6f8fc" : "#0a0f1a",
+            );
+          }
+          toggleBtn.setAttribute(
+            "aria-pressed",
+            theme === "light" ? "true" : "false",
+          );
+        }
+
+        // Le thème initial a déjà été posé par le script anti-flash dans <head>
+        applyTheme(root.getAttribute("data-theme") || "dark");
+
+        toggleBtn.addEventListener("click", () => {
+          const current = root.getAttribute("data-theme");
+          applyTheme(current === "light" ? "dark" : "light");
+          try {
+            localStorage.setItem(THEME_KEY + "-manual", "1");
+          } catch (e) {}
+        });
+
+        // Suit le système si l'utilisateur n'a jamais choisi manuellement
+        window
+          .matchMedia("(prefers-color-scheme: light)")
+          .addEventListener("change", (e) => {
+            let manual = null;
+            try {
+              manual = localStorage.getItem(THEME_KEY + "-manual");
+            } catch (err) {}
+            if (!manual) applyTheme(e.matches ? "light" : "dark");
+          });
+      })();
+
+      // Barre de progression de lecture
+      const scrollProgress = document.getElementById("scrollProgress");
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        scrollProgress.style.width = progress + "%";
+      });
+
+      // Effet machine à écrire (rôles)
+      (function typedRoles() {
+        const el = document.getElementById("typedText");
+        if (!el) return;
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const roles = [
+          "sites web modernes",
+          "applications dynamiques",
+          "solutions sécurisées",
+          "expériences sur mesure",
+        ];
+        if (prefersReduced) {
+          el.textContent = roles[0];
+          return;
+        }
+        let roleIndex = 0,
+          charIndex = 0,
+          deleting = false;
+        function tick() {
+          const current = roles[roleIndex];
+          el.textContent = current.substring(
+            0,
+            deleting ? --charIndex : ++charIndex,
+          );
+          let delay = deleting ? 45 : 90;
+          if (!deleting && charIndex === current.length) {
+            delay = 1600;
+            deleting = true;
+          } else if (deleting && charIndex === 0) {
+            deleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            delay = 400;
+          }
+          setTimeout(tick, delay);
+        }
+        tick();
+      })();
+
+      // Compteurs animés (statistiques)
+      const counters = document.querySelectorAll(".stat-number[data-count]");
+      const runCounter = (el) => {
+        const target = parseInt(el.getAttribute("data-count"), 10);
+        const suffix = el.getAttribute("data-suffix") || "";
+        const duration = 1400;
+        const startTime = performance.now();
+        const step = (now) => {
+          const p = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        };
+        requestAnimationFrame(step);
+      };
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              runCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      counters.forEach((c) => counterObserver.observe(c));
 
       console.log(
         "%c 🚀 Portfolio — Pape Abdoulaye Gaye ",
